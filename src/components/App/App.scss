@@ -1,0 +1,24 @@
+$fill: #F3F7FA;
+
+
+body {
+    background-color: $fill;
+}
+
+header {
+    margin-top: 50px;
+    width: 60px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.block-shadow {
+    background-color: white;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px 0 20px 0;
+}
