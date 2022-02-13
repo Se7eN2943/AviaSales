@@ -1,9 +1,11 @@
 import React from 'react';
 import Filters from '../Filters/Filters'
-import TicketList from '../TicketList/TicketList'
+import Content from '../Content/Content'
+import logo from './avia.png'; 
 
 
-const Logo = () => <div className="headerLogo"><img src="./img/1.png" alt="aviaLogo" /></div>
+
+const Logo = () => <div className="headerLogo"><img src={logo} alt="aviaLogo" /></div>
 
 const App = () => {
 
@@ -17,7 +19,7 @@ const App = () => {
             <header><Logo /></header>
             <main>
                 <Filters />
-                <TicketList />
+                <Content />
             </main>
         </React.Fragment>
     )
