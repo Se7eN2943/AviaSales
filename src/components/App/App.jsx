@@ -4,7 +4,7 @@ import Filters from '../Filters/Filters'
 import Content from '../Content/Content'
 import logo from './avia.png';
 import AviaSales from '../../services';
-import * as actions from '../../actions'
+import { setSearchId, setTickets } from '../../actions'
 
 const aviaSales = new AviaSales();
 
@@ -22,6 +22,7 @@ const App = ({ setSearchId, setTickets, searchId }) => {
         await getSerch()
         await getTickets()
     }, [])
+    
 
     return (
         <React.Fragment>
@@ -42,4 +43,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, actions)(App)
+export default connect(mapStateToProps, { setSearchId, setTickets })(App)

@@ -1,23 +1,23 @@
 const initialState = {
-    searchId: '735e5969f6d26a4b49bbfa614bd6d88b',
+    searchId: '',
     tickets: [],
-    filterList: [],
-    sortFlag: ''
+    filterList: ['Без пересадок'],
+    sortFlag: 'discount'
 }
 
-const reducer = (state = initialState, actions) => {
-    switch (actions.type) {
+const reducer = (state = initialState, {payload, type}) => {
+    switch (type) {
         case 'SEARCH_ID':
-            state.searchId = actions.id.searchId;
+            state.searchId = payload.searchId;
             return state
         case 'TICKETS':
-            state.tickets = actions.tickets.tickets;
+            state.tickets = payload.tickets;
             return state
         case 'SORT':
-            state.sortFlag = actions.sortFlag;
+            state.sortFlag = payload;
             return state
         case 'FILTER':
-            state.filterList = actions.filterList;
+            state.filterList = payload;
             return state
         default:
             return state

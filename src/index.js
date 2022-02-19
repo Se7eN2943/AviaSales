@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk';
 import reducer from './reducer';
 import { Provider } from 'react-redux';
 import App from './components/App/App';
@@ -14,10 +15,23 @@ import './components/Content/Content.scss';
 
 const root = document.querySelector('.root');
 
-const store = createStore(reducer);
+const logger = store => next => actions => {
+    const res = next(actions);
+    console.log(store.getState())
+    return res
+}
+
+const composeEnhancers =
+    typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            // Specify extension’s options like name, actionsDenylist, actionsCreators, serialize...
+        })
+        : compose;
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(logger, thunk)));
 
 ReactDOM.render(
-    <Provider store ={store}>
+    <Provider store={store}>
         <App />
     </Provider>, root);
 

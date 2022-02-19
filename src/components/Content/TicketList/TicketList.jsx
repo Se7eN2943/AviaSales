@@ -1,13 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import Ticket from './Ticket/Ticket';
 
 
 
-const TicketList = () => {
+const TicketList = ({ tickets }) => {
+    const elements = tickets.map(ticket => {
+        return <Ticket
+            price={ticket.price}
+            carrier={ticket.carrier}
+            segments={ticket.segments}
+        />
+    })
     return (
         <React.Fragment>
             <div className="tickets">
-                <Ticket />
                 <Ticket />
                 <Ticket />
                 <Ticket />
@@ -20,4 +27,7 @@ const TicketList = () => {
     )
 }
 
-export default TicketList;
+const mapStateToProps = state => ({ tickets: state.tickets })
+
+export default connect(mapStateToProps)(TicketList)
+

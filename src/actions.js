@@ -1,27 +1,27 @@
 export const setSearchId = id => {
     return {
         type: 'SEARCH_ID',
-        id
+        payload: id
     }
 }
 
 export const setTickets = tickets => {
     return {
         type: 'TICKETS',
-        tickets
+        payload: tickets
     }
 }
 
 export const setSortFlag = flag => {
     return {
-        type: 'TICKETS',
-        flag
+        type: 'SORT',
+        payload: flag
     }
 }
 
 export const setFilterList = list => {
     return {
         type: 'FILTER',
-        list
+        payload: list
     }
 }

@@ -2,13 +2,13 @@ import React from 'react';
 import logo from './S7Logo.png';
 import Route from './Route/Route';
 
-const Ticket = () => {
+const Ticket = ({price, carrier, segments}) => {
 
     return (
         <div className="ticket block-shadow">
             <div className="priceAndCompany">
                 <div className="price">
-                    13 000 Р
+                    {price + 'Р'}
                 </div>
                 <div className="company">
                     <img src={logo} alt="CompanyLogo" />
@@ -21,3 +21,4 @@ const Ticket = () => {
 }
 
 export default Ticket
+

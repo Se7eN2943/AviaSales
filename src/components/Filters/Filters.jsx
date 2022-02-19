@@ -1,12 +1,14 @@
 import React from 'react';
 import { Checkbox } from 'antd';
+import { connect } from 'react-redux'
+import { setFilterList } from '../../actions'
 import 'antd/dist/antd.css';
 
 const CheckboxGroup = Checkbox.Group;
 const plainOptions = ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'];
 const defaultCheckedList = ['Без пересадок'];
 
-const Filters = () => {
+const Filters = ({ setFilterList, filterList }) => {
     const [checkedList, setCheckedList] = React.useState(defaultCheckedList);
     const [indeterminate, setIndeterminate] = React.useState(true);
     const [checkAll, setCheckAll] = React.useState(false);
@@ -15,6 +17,7 @@ const Filters = () => {
         setCheckedList(list);
         setIndeterminate(!!list.length && list.length < plainOptions.length);
         setCheckAll(list.length === plainOptions.length);
+        setFilterList(list)        
     };
 
     const onCheckAllChange = e => {
@@ -37,4 +40,10 @@ const Filters = () => {
     );
 };
 
-export default Filters
+const mapStateToProps = state => {
+    return {
+        filterList: state.filterList
+    }
+}
+
+export default  connect(mapStateToProps, { setFilterList })(Filters)
