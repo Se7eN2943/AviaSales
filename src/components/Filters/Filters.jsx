@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Divider } from 'antd';
+import { Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 
 const CheckboxGroup = Checkbox.Group;
@@ -21,6 +21,9 @@ const Filters = () => {
         setCheckedList(e.target.checked ? plainOptions : []);
         setIndeterminate(false);
         setCheckAll(e.target.checked);
+        e.target.checked
+            ? onChange(['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'])
+            : onChange([])
     };
 
     return (
