@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
+import { Progress } from 'antd';
 import Filters from '../Filters/Filters'
 import Content from '../Content/Content'
 import logo from './avia.png';
@@ -20,7 +21,7 @@ const App = ({ setSearchId, setTickets, searchId, ticketsFlag }) => {
         return
     })
 
-    useEffect( async () => {
+    useEffect(async () => {
         await getSerch()
     }, [])
 
@@ -32,7 +33,14 @@ const App = ({ setSearchId, setTickets, searchId, ticketsFlag }) => {
     return (
         <React.Fragment>
             <header><Logo /></header>
-{!ticketsFlag && <div>asfdjlkfjsldkfj</div>}
+            {!ticketsFlag && <Progress
+                strokeColor={{
+                    '0%': '#108ee9',
+                    '100%': '#87d068',
+                }}
+                percent={70}
+                showInfo={false}
+            />}
             <main>
                 <Filters />
                 <Content />
@@ -50,3 +58,6 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { setSearchId, setTickets })(App)
+
+
+

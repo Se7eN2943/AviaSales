@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Ticket from './Ticket/Ticket';
+import { Alert } from 'antd';
 
 const TicketList = ({ tickets, filterList, sortFlag }) => {
 
@@ -79,16 +80,25 @@ const TicketList = ({ tickets, filterList, sortFlag }) => {
     })
 
     return (
-        <React.Fragment>
-            <div className="tickets">
-                {elements.length === 0
-                    ? <div className="jg">Не удалось загрузить страницу</div>
-                    : elements.slice(0, 5)}
-            </div>
-            <button className="allTicketsBtn active">
-                Показать еще 5 билетов!
-            </button>
-        </React.Fragment>
+        < React.Fragment >
+            {elements.length === 0
+                ? <Alert
+                    message="Ничего не найдено"
+                    description="Попробуйте изменить фильтры или обновите страницу"
+                    type="info"
+                    showIcon
+                />
+                :
+                < React.Fragment >
+                    <div className="tickets">
+                        {elements.slice(0, 5)}
+                    </div>
+                    <button className="allTicketsBtn active">
+                        Показать еще 5 билетов!
+                    </button>
+                </React.Fragment >
+            }
+        </React.Fragment >
     )
 }
 
@@ -101,4 +111,12 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(TicketList)
+
+
+// <Alert
+//   message="Informational Notes"
+//   description="Additional description and information about copywriting."
+//   type="info"
+//   showIcon
+// />
 
