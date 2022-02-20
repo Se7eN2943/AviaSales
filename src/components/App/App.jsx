@@ -16,6 +16,7 @@ const App = ({ setSearchId, setTickets, searchId, ticketsFlag }) => {
     const getSerch = () => aviaSales.getSearchId().then(id => setSearchId(id))
 
     const getTickets = () => aviaSales.getTickets(searchId).then(ticket => {
+        // if(typeof tickets !== 'object') return console.log('dct gbplf')
         setTickets(ticket)
         if (!ticket.stop) return getTickets()
         return 
