@@ -15,8 +15,9 @@ const reducer = (state = initialState, {
                 ...state, searchId: payload.searchId
             };
         case 'TICKETS':
+        //    let tickets = state.tickets
             return {
-                ...state, tickets: payload.tickets
+                ...state, tickets: state.tickets.concat(payload.tickets)
             };
         case 'SORT':
             return {

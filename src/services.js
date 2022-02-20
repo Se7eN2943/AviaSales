@@ -7,7 +7,6 @@ export default class AviaSales {
     }
 
     async getTickets(id) {
-        console.log(id)
         const res = await fetch(`https://aviasales-test-api.java-mentor.com/tickets?searchId=${id}`)
         if (!res.ok) throw new Error('Что то пошло не так')
         return await res.json()

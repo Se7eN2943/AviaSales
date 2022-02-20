@@ -15,12 +15,15 @@ const App = ({ setSearchId, setTickets, searchId }) => {
 
     const getSerch = async () => await aviaSales.getSearchId().then(id => setSearchId(id))
 
-    const getTickets = async (id) => await aviaSales.getTickets(id).then(ticket => setTickets(ticket))
-
+    const getTickets = () => aviaSales.getTickets(searchId).then(ticket => {
+        setTickets(ticket)
+        if (!ticket.stop) return getTickets()
+        return
+    })
 
     useEffect(async () => {
-        const id =  await getSerch()
-        await getTickets(id.payload.searchId)
+        await getSerch()
+        getTickets()
     }, [])
 
 
