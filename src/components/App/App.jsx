@@ -8,12 +8,11 @@ import { setSearchId, setTickets } from '../../actions'
 
 const aviaSales = new AviaSales();
 
-
 const Logo = () => <div className="headerLogo"><img src={logo} alt="aviaLogo" /></div>
 
-const App = ({ setSearchId, setTickets, searchId }) => {
+const App = ({ setSearchId, setTickets, searchId, ticketsFlag }) => {
 
-    const getSerch = async () => await aviaSales.getSearchId().then(id => setSearchId(id))
+    const getSerch = () => aviaSales.getSearchId().then(id => setSearchId(id))
 
     const getTickets = () => aviaSales.getTickets(searchId).then(ticket => {
         setTickets(ticket)
@@ -21,15 +20,19 @@ const App = ({ setSearchId, setTickets, searchId }) => {
         return
     })
 
-    useEffect(async () => {
+    useEffect( async () => {
         await getSerch()
-        getTickets()
     }, [])
+
+    useEffect(() => {
+        getTickets()
+    }, [searchId])
 
 
     return (
         <React.Fragment>
             <header><Logo /></header>
+{!ticketsFlag && <div>asfdjlkfjsldkfj</div>}
             <main>
                 <Filters />
                 <Content />
@@ -41,9 +44,9 @@ const App = ({ setSearchId, setTickets, searchId }) => {
 const mapStateToProps = state => {
     return {
         searchId: state.searchId,
-        tickets: state.tickets
+        tickets: state.tickets,
+        ticketsFlag: state.ticketsFlag
     }
 }
-
 
 export default connect(mapStateToProps, { setSearchId, setTickets })(App)

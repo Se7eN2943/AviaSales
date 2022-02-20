@@ -1,6 +1,7 @@
 const initialState = {
     searchId: '',
     tickets: [],
+    ticketsFlag: false,
     filterList: ['Без пересадок'],
     sortFlag: 'discount'
 }
@@ -15,9 +16,8 @@ const reducer = (state = initialState, {
                 ...state, searchId: payload.searchId
             };
         case 'TICKETS':
-        //    let tickets = state.tickets
             return {
-                ...state, tickets: state.tickets.concat(payload.tickets)
+                ...state, tickets: state.tickets.concat(payload.tickets), ticketsFlag: payload.tickets.stop
             };
         case 'SORT':
             return {
