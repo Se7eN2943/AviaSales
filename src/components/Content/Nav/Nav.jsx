@@ -1,54 +1,45 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 import { setSortFlag } from '../../../actions'
 
-
 const Nav = ({ sortFlag, setSortFlag }) => {
-    let discountActiv
-    let fastActiv
-    let optimalActiv
-
-    const onSortClick = async (e) => {
-        console.log(e.target.className)
-        await setSortFlag(e.target.name)
-        e.target.name === 'fast' && (fastActiv = 'active')
-        console.log(e.target.className)
-        // switch (sortFlag) {
-        //     case 'discount':
-        //         discountActiv = 'active'
-        //         fastActiv = ''
-        //         optimalActiv = ''
-        //         break
-        //     case 'fast':
-        //         discountActiv = ''
-        //         fastActiv = 'fast'
-        //         optimalActiv = ''
-        //         break
-        //     case 'optimal':
-        //         discountActiv = ''
-        //         fastActiv = ''
-        //         optimalActiv = 'optimal'
-        //         break
-        // }
+    let discountActiv = "active"
+    let fastActiv = " "
+    let optimalActiv = " "
+    switch (sortFlag) {
+        case 'fast':
+            discountActiv = ''
+            fastActiv = 'active'
+            optimalActiv = ''
+            break
+        case 'optimal':
+            discountActiv = ''
+            fastActiv = ''
+            optimalActiv = 'active'
+            break
+        default:
+            discountActiv = 'active'
+            fastActiv = ''
+            optimalActiv = ''
     }
-    console.log(fastActiv)
+
     return (
         <nav>
             <button
                 name='discount'
-                onClick={onSortClick}
+                onClick={e => setSortFlag(e.target.name)}
                 className={`navBtn_start navBtn  weight600 ${discountActiv}`}>
                 самый дешевый
             </button>
             <button
                 name='fast'
-                onClick={onSortClick}
+                onClick={e => setSortFlag(e.target.name)}
                 className={'navBtn_center navBtn  weight600' + ' ' + fastActiv}>
                 самый быстрый
             </button>
             <button
                 name='optimal'
-                onClick={onSortClick}
+                onClick={e => setSortFlag(e.target.name)}
                 className={`navBtn_end navBtn  weight600 ${optimalActiv}`}>
                 оптимальный
             </button>
