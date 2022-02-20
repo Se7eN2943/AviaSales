@@ -4,32 +4,34 @@ import { setSortFlag } from '../../../actions'
 
 
 const Nav = ({ sortFlag, setSortFlag }) => {
-    console.log(sortFlag)
-    let discountActiv = 'active'
-    let fastActiv = ''
-    let optimalActiv = ''
+    let discountActiv
+    let fastActiv
+    let optimalActiv
 
-    const onSortClick = (e) => {
-        setSortFlag(e.target.name)
-        switch (e.target.name) {
-            case 'discount':
-                discountActiv = 'active'
-                fastActiv = ''
-                optimalActiv = ''
-                break
-            case 'fast':
-                discountActiv = ''
-                fastActiv = 'fast'
-                optimalActiv = ''
-                break
-            case 'optimal':
-                discountActiv = ''
-                fastActiv = ''
-                optimalActiv = 'optimal'
-                break
-        }
+    const onSortClick = async (e) => {
+        console.log(e.target.className)
+        await setSortFlag(e.target.name)
+        e.target.name === 'fast' && (fastActiv = 'active')
+        console.log(e.target.className)
+        // switch (sortFlag) {
+        //     case 'discount':
+        //         discountActiv = 'active'
+        //         fastActiv = ''
+        //         optimalActiv = ''
+        //         break
+        //     case 'fast':
+        //         discountActiv = ''
+        //         fastActiv = 'fast'
+        //         optimalActiv = ''
+        //         break
+        //     case 'optimal':
+        //         discountActiv = ''
+        //         fastActiv = ''
+        //         optimalActiv = 'optimal'
+        //         break
+        // }
     }
-
+    console.log(fastActiv)
     return (
         <nav>
             <button
@@ -41,7 +43,7 @@ const Nav = ({ sortFlag, setSortFlag }) => {
             <button
                 name='fast'
                 onClick={onSortClick}
-                className={`navBtn_center navBtn  weight600 ${fastActiv}`}>
+                className={'navBtn_center navBtn  weight600' + ' ' + fastActiv}>
                 самый быстрый
             </button>
             <button

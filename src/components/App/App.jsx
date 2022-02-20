@@ -15,14 +15,14 @@ const App = ({ setSearchId, setTickets, searchId }) => {
 
     const getSerch = async () => await aviaSales.getSearchId().then(id => setSearchId(id))
 
-    const getTickets = async () => await aviaSales.getTickets(searchId).then(ticket => setTickets(ticket))
+    const getTickets = async (id) => await aviaSales.getTickets(id).then(ticket => setTickets(ticket))
 
 
     useEffect(async () => {
-        await getSerch()
-        await getTickets()
+        const id =  await getSerch()
+        await getTickets(id.payload.searchId)
     }, [])
-    
+
 
     return (
         <React.Fragment>

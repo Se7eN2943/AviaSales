@@ -5,22 +5,29 @@ const initialState = {
     sortFlag: 'discount'
 }
 
-const reducer = (state = initialState, {payload, type}) => {
+const reducer = (state = initialState, {
+    payload,
+    type
+}) => {
     switch (type) {
         case 'SEARCH_ID':
-            state.searchId = payload.searchId;
-            return state
+            return {
+                ...state, searchId: payload.searchId
+            };
         case 'TICKETS':
-            state.tickets = payload.tickets;
-            return state
+            return {
+                ...state, tickets: payload.tickets
+            };
         case 'SORT':
-            state.sortFlag = payload;
-            return state
+            return {
+                ...state, sortFlag: payload
+            };
         case 'FILTER':
-            state.filterList = payload;
-            return state
+            return {
+                ...state, filterList: payload
+            };
         default:
-            return state
+            return state;
     }
 }
 

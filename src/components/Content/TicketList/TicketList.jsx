@@ -4,21 +4,30 @@ import Ticket from './Ticket/Ticket';
 
 
 
-const TicketList = ({ tickets }) => {
-    const elements = tickets.map(ticket => {
+const TicketList = ({ tickets, filterList, sortFlag }) => {
+console.log(filterList) 
+    const filteredTickets = tickets.filter(ticket => {
+        switch (filterList){
+            case filterList:
+            default: return ticket
+        }
+    }) 
+
+
+    const elements = tickets.map((ticket, i) => {
         return <Ticket
             price={ticket.price}
             carrier={ticket.carrier}
             segments={ticket.segments}
+            key={i}
         />
     })
     return (
         <React.Fragment>
             <div className="tickets">
-                <Ticket />
-                <Ticket />
-                <Ticket />
-                <Ticket />
+                {filterList.length === 0
+                    ? <div className="jg">Не удалось загрузить страницу</div>
+                    : elements}
             </div>
             <button className="allTicketsBtn active">
                 Показать еще 5 билетов!
@@ -27,7 +36,13 @@ const TicketList = ({ tickets }) => {
     )
 }
 
-const mapStateToProps = state => ({ tickets: state.tickets })
+const mapStateToProps = state => {
+    return {
+        tickets: state.tickets,
+        filterList: state.filterList,
+        sortFlag: state.sortFlag
+    }
+}
 
 export default connect(mapStateToProps)(TicketList)
 

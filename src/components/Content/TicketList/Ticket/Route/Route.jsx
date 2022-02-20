@@ -1,15 +1,20 @@
 import React from 'react';
+import {format} from 'date-fns'
 
 
-const Route = () => {
+const Route = ({ segments }) => {
+    const { date, origin, destination, duration, stops } = segments
+    const dateSplit = date.split('T')[0]
+    const timeSplit = date.split('T')[1].slice(0, 5)
+
     return (
         <div className="route">
             <div className="routeName routeBlock">
                 <span className="name">
-                    MOW – HKT
+                    {`${origin} - ${destination}`}
                 </span>
                 <span className="time">
-                    10:45 – 08:00
+                    {format(new Date(dateSplit), 'dd.MM.yyyy') + ' ' + timeSplit}
                 </span>
             </div>
 
@@ -18,20 +23,20 @@ const Route = () => {
                     В пути
                 </span>
                 <span className="time">
-                    21ч 15м
+                    {Math.floor(duration / 60) + 'ч' + ' ' + duration % 60 + 'м'}
                 </span>
             </div>
             <div className="transplants routeBlock">
                 <span className="name">
-                    2 пересадки
+                    {`${stops.length} пересадки`}
                 </span>
                 <span className="time">
-                    HKG, JNB
+                    {stops.join(', ')}
                 </span>
             </div>
 
         </div>
-        
+
 
     )
 }

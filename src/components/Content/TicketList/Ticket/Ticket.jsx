@@ -2,8 +2,7 @@ import React from 'react';
 import logo from './S7Logo.png';
 import Route from './Route/Route';
 
-const Ticket = ({price, carrier, segments}) => {
-
+const Ticket = ({price, segments}) => {
     return (
         <div className="ticket block-shadow">
             <div className="priceAndCompany">
@@ -14,8 +13,8 @@ const Ticket = ({price, carrier, segments}) => {
                     <img src={logo} alt="CompanyLogo" />
                 </div>
             </div>
-            <Route />
-            <Route />
+            <Route segments={segments[0]}/>
+            <Route segments={segments[1]}/>
         </div>
     )
 }
