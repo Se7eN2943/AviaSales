@@ -25,3 +25,10 @@ export const setFilterList = list => {
         payload: list
     }
 }
+
+export const setSlice = sliced => {
+    return {
+        type: 'SLICED',
+        payload: sliced
+    }
+}

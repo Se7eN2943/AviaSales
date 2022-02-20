@@ -3,7 +3,8 @@ const initialState = {
     tickets: [],
     ticketsFlag: false,
     filterList: ['Без пересадок'],
-    sortFlag: 'discount'
+    sortFlag: 'discount',
+    sliced: 5
 }
 
 const reducer = (state = initialState, {
@@ -17,7 +18,7 @@ const reducer = (state = initialState, {
             };
         case 'TICKETS':
             return {
-                ...state, tickets: state.tickets.concat(payload.tickets), ticketsFlag: payload.tickets.stop
+                ...state, tickets: state.tickets.concat(payload.tickets), ticketsFlag: payload.stop
             };
         case 'SORT':
             return {
@@ -26,6 +27,10 @@ const reducer = (state = initialState, {
         case 'FILTER':
             return {
                 ...state, filterList: payload
+            };
+        case 'SLICED':
+            return {
+                ...state, sliced: payload
             };
         default:
             return state;

@@ -18,7 +18,7 @@ const App = ({ setSearchId, setTickets, searchId, ticketsFlag }) => {
     const getTickets = () => aviaSales.getTickets(searchId).then(ticket => {
         setTickets(ticket)
         if (!ticket.stop) return getTickets()
-        return
+        return 
     })
 
     useEffect(async () => {

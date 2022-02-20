@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { setSlice } from '../../../actions'
 import Ticket from './Ticket/Ticket';
 import { Alert } from 'antd';
 
-const TicketList = ({ tickets, filterList, sortFlag }) => {
+const TicketList = ({ tickets, filterList, sortFlag, sliced, setSlice }) => {
 
     let filteredTickets = []
 
@@ -79,6 +80,11 @@ const TicketList = ({ tickets, filterList, sortFlag }) => {
         />
     })
 
+    const onGetFive = () => {
+        setSlice(sliced + 5)
+    }
+
+
     return (
         < React.Fragment >
             {elements.length === 0
@@ -91,9 +97,9 @@ const TicketList = ({ tickets, filterList, sortFlag }) => {
                 :
                 < React.Fragment >
                     <div className="tickets">
-                        {elements.slice(0, 5)}
+                        {elements.slice(0, sliced)}
                     </div>
-                    <button className="allTicketsBtn active">
+                    <button onClick={onGetFive} className="allTicketsBtn active">
                         Показать еще 5 билетов!
                     </button>
                 </React.Fragment >
@@ -106,11 +112,12 @@ const mapStateToProps = state => {
     return {
         tickets: state.tickets,
         filterList: state.filterList,
-        sortFlag: state.sortFlag
+        sortFlag: state.sortFlag,
+        sliced: state.sliced,
     }
 }
 
-export default connect(mapStateToProps)(TicketList)
+export default connect(mapStateToProps, { setSlice })(TicketList)
 
 
 // <Alert
