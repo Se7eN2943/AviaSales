@@ -3,7 +3,6 @@ import TicketList from './TicketList/TicketList'
 import Nav from './Nav/Nav'
 
 const Content = () => {
-
     return (
         <section className="content">
             <Nav />
@@ -11,7 +10,5 @@ const Content = () => {
         </section>
     )
 }
-
-
 
 export default Content 

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Checkbox } from 'antd';
 import { connect } from 'react-redux'
 import { setFilterList } from '../../actions'
@@ -17,7 +17,7 @@ const Filters = ({ setFilterList, filterList }) => {
         setCheckedList(list);
         setIndeterminate(!!list.length && list.length < plainOptions.length);
         setCheckAll(list.length === plainOptions.length);
-        setFilterList(list)        
+        setFilterList(list)
     };
 
     const onCheckAllChange = e => {
@@ -39,11 +39,7 @@ const Filters = ({ setFilterList, filterList }) => {
         </div>
     );
 };
- 
-const mapStateToProps = state => {
-    return {
-        filterList: state.filterList
-    }
-}
 
-export default  connect(mapStateToProps, { setFilterList })(Filters)
+const mapStateToProps = state => ({filterList: state.filterList})
+
+export default connect(mapStateToProps, { setFilterList })(Filters)

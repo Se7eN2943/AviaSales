@@ -22,7 +22,6 @@ const Nav = ({ sortFlag, setSortFlag }) => {
             fastActiv = ''
             optimalActiv = ''
     }
-
     return (
         <nav>
             <button
