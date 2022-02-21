@@ -30,7 +30,6 @@
 //         }],
 //         "no-restricted-syntax": "off",
 //         "prefer-destructuring": "off",
-//         "react/destructuring-assignment": "off",
 //         "react/no-unused-class-component-methods": "off",
 //         "no-return-assign": "off",
 //         "class-methods-use-this": "off",
