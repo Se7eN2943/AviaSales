@@ -86,12 +86,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { setSlice })(TicketList)
-
-
-// <Alert
-//   message="Informational Notes"
-//   description="Additional description and information about copywriting."
-//   type="info"
-//   showIcon
-// />
-
