@@ -1,11 +1,11 @@
 import React from 'react';
 import TicketList from './TicketList/TicketList'
-import Nav from './Nav/Nav'
+import Tabs from './Tabs/Tabs'
 
 const Content = () => {
     return (
         <section className="content">
-            <Nav />
+            <Tabs />
             <TicketList />
         </section>
     )

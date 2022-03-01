@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
 import { connect } from 'react-redux'
-import { setFilterList } from '../../actions'
+import { setFilterList } from '../../redux/actions'
 import 'antd/dist/antd.css';
 
 const CheckboxGroup = Checkbox.Group;

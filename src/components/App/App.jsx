@@ -5,7 +5,7 @@ import Filters from '../Filters/Filters'
 import Content from '../Content/Content'
 import logo from './avia.png';
 import AviaSales from '../../services';
-import { setSearchId, setTickets, setTicketsFlag } from '../../actions'
+import { setSearchId, setTickets, setTicketsFlag } from '../../redux/actions'
 
 const aviaSales = new AviaSales();
 
@@ -16,7 +16,7 @@ const App = ({ setSearchId, setTickets, searchId, ticketsFlag, setTicketsFlag, t
     const getSerch = () => aviaSales.getSearchId().then(id => setSearchId(id))
 
     const getTickets = () => aviaSales.getTickets(searchId).then(ticket => {
-        if (!ticket) return setTicketsFlag(true)
+        if (!ticket) return getTickets()
         setTickets(ticket)
         if (!ticket.stop) return getTickets()
         return
